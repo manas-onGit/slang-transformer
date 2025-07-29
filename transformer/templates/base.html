@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Slang Transformer{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #0d0d0d;
+      background-image:
+        radial-gradient(circle at 1px 1px, #00f7ff11 1px, transparent 0),
+        radial-gradient(circle at 3px 3px, #00f7ff11 1px, transparent 0);
+      background-size: 40px 40px;
+      color: #fff;
+      font-family: 'Share Tech Mono', monospace;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .navbar {
+      background-color: #0b0b0b;
+      padding: 1.2rem 1.5rem;
+      border-bottom: 2px solid #00f7ff55;
+      box-shadow: 0 2px 10px #00f7ff22;
+    }
+
+    .navbar-brand {
+      font-family: 'Orbitron', sans-serif;
+      color: #00f7ff !important;
+      font-size: 1.7rem;
+    }
+
+    .navbar-toggler {
+      border: 1px solid #00f7ff;
+    }
+
+    .navbar-nav .nav-link {
+      color: #fff !important;
+      margin: 0 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 1rem;
+    }
+
+    .navbar-nav .nav-link i {
+      font-size: 0.9rem;
+    }
+
+    .slogan {
+      font-size: 1.3rem;
+      text-align: center;
+      margin-top: 12px;
+      color: #00f7ff;
+    }
+
+    .footer {
+      background-color: #0b0b0b;
+      border-top: 2px solid #00f7ff55;
+      color: #aaa;
+      padding: 1.2rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+      box-shadow: 0 -2px 10px #00f7ff22;
+    }
+
+    .footer a {
+      color: #00f7ff;
+      margin: 0 15px;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer a:hover {
+      color: #fff;
+    }
+
+    textarea, input {
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-brand {
+        font-size: 1.3rem;
+      }
+
+      .slogan {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Optional subtle techy animated background overlay */
+    .background-overlay::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: repeating-linear-gradient(
+        45deg,
+        #00f7ff11,
+        #00f7ff11 1px,
+        transparent 1px,
+        transparent 20px
+      );
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.05;
+    }
+
+    .container, .navbar, .footer {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body class="background-overlay">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-robot me-2"></i>Slang Transformer</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars" style="color: #00f7ff;"></i>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'feedback' %}"><i class="fas fa-comment-dots"></i> Feedback</a></li>
+          {% if user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+          {% else %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}"><i class="fas fa-user-plus"></i> Signup</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Slogan -->
+  <div class="slogan"><i class="fas fa-microphone-lines me-2"></i>"Turning Slang into Sense!"</div>
+
+  <!-- Main content -->
+  <div class="container mt-4 mb-5">
+    {% block content %}{% endblock %}
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container py-3">
+      <div class="row text-center">
+        <div class="col-12 mb-2">
+          <span style="color: #aaa; font-size: 0.9rem;">
+             @2025 <strong>Slang Transformer</strong> | Developed by <span style="color: #00f7ff;">Manas Srivastava</span>
+          </span>
+        </div>
+        <div class="col-12 d-flex justify-content-center gap-4 flex-wrap">
+          <a href="https://github.com/manas-onGit" target="_blank"><i class="fab fa-github me-1"></i>GitHub</a>
+          <a href="mailto:manasworks04@gmail.com"><i class="fas fa-envelope me-1"></i>Email</a>
+          <a href="https://www.linkedin.com/in/manas-srivastava-654082309/" target="_blank"><i class="fab fa-linkedin me-1"></i>LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Feedback | Slang Transformer{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card p-4 shadow rounded-4 col-md-8 mx-auto">
+        <h3 class="mb-4 text-center">📝 Send Feedback</h3>
+
+        {% if success %}
+            <div class="alert alert-success">Thank you for your feedback!</div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+            </div>
+            <div class="mb-3">
+                <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+            </div>
+            <div class="mb-3">
+                <textarea name="message" class="form-control" rows="4" placeholder="Your Feedback" required></textarea>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

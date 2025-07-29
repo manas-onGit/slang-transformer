@@ -1,0 +1,30 @@
+body {
+    background: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+textarea {
+    resize: none;
+}
+
+.text-pink {
+    color: #ff66cc;
+    font-weight: 500;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .slogan-text {
+    animation: pulse 3s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { opacity: 0.3; transform: scale(0.98); }
+    50% { opacity: 1; transform: scale(1.02); }
+    100% { opacity: 0.3; transform: scale(0.98); }
+  }
+  

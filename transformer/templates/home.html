@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home | Slang Transformer{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <div class="card p-4 bg-light shadow-lg rounded-4">
+        <h2 class="mb-4">🗣️ Slang to Formal Text Converter</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <textarea name="slang_input" rows="4" class="form-control mb-3" placeholder="Enter slang text here...">{{ request.POST.slang_input }}</textarea>
+            <button type="submit" class="btn btn-primary px-4">Transform</button>
+        </form>
+
+        {% if result %}
+            <div class="mt-4 alert alert-success">
+                <strong>Formal Output:</strong>
+                <p class="mb-0">{{ result }}</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
