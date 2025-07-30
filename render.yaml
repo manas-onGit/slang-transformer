@@ -2,7 +2,9 @@ services:
   - type: web
     name: slang-transformer
     env: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
     startCommand: gunicorn slangweb.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
@@ -10,4 +12,4 @@ services:
       - key: SECRET_KEY
         value: django-insecure-mmgzq!=7rny*d*3bp1%#n7_wnt3r$-$0@gju-5v9%76s-v^e7d
       - key: DEBUG
-        value: False
+        value: 'False'
